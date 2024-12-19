@@ -1,3 +1,6 @@
+<script setup>
+imort
+</script>
 <template>
   <div class="login-page">
     <h1>Página de Login</h1>

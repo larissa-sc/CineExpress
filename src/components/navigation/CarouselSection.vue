@@ -8,7 +8,7 @@ const slides = ref([
     title: 'NOME DA NOTÍCIA',
     subtitle: 'Subtítulo/ resumo notícia'
   },
-  // Adicione mais slides
+  // Adicione mais slidess
 ])
 
 const nextSlide = () => {
