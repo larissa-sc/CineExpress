@@ -1,7 +1,5 @@
-<script setup>
-imort
-</script>
 <template>
+    <HeaderView />
   <div class="login-page">
     <h1>Página de Login</h1>
     <form @submit.prevent="submitLogin">
@@ -22,6 +20,8 @@ imort
 </template>
 
 <script setup>
+import HeaderView from '@/components/fixed/HeaderView.vue';
+
 import { ref } from 'vue';
 
 const email = ref('');
