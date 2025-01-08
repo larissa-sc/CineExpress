@@ -20,12 +20,8 @@ import SideMenu from '../components/navigation/SideMenu.vue'
 </template>
 
 <style>
-
-
-
   .app-container {
   background-color: #1a1a1a;
-  min-height: 100vh;
   color: white;
 }
 </style>

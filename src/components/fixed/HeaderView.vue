@@ -15,7 +15,6 @@ import SideMenu from '../navigation/SideMenu.vue';
     <div class="auth-container">
       <!-- Link para a página de login -->
       <router-link to="/login" class="auth-link">Login</router-link>
-
       <!-- Link para a página de cadastro -->
       <router-link to="/" class="auth-link">Cadastre-se</router-link>
     </div>
@@ -24,11 +23,20 @@ import SideMenu from '../navigation/SideMenu.vue';
 
 <style scoped>
 .header {
-  background-color: #108f9c;
+  background-color: #108d9b;
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+}
+
+.logo-container {
+  display: flex;
   align-items: center;
+}
+
+.logo {
+  height: 100px; /* Ajuste o tamanho da logo conforme necessário */
 }
 
 .search-container {
@@ -40,6 +48,7 @@ import SideMenu from '../navigation/SideMenu.vue';
   padding: 0.5rem;
   border-radius: 4px;
   border: none;
+  width: 250px; /* Ajuste a largura do campo de busca */
 }
 
 .search-button {
@@ -48,6 +57,11 @@ import SideMenu from '../navigation/SideMenu.vue';
   border-radius: 4px;
   padding: 0.5rem 1rem;
   cursor: pointer;
+}
+
+.auth-container {
+  display: flex;
+  align-items: center;
 }
 
 .auth-link {

@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 
-const currentSlide = ref(0)
+const currentSlide = ref(0)  /*armazena o índice do slide atual*/
 const slides = ref([
   {
     image: 'harry.jpg',
@@ -48,7 +48,7 @@ onMounted(() => {
   position: relative;
   height: 400px;
   background: #333;
-  margin: 2rem 0;
+  margin: 2rem 2rem;  /*define a distância das bordas do carrossel*/
 }
 
 .carousel-button {

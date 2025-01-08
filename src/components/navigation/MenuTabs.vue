@@ -13,7 +13,7 @@ defineProps({
 defineEmits(['close'])
 
 const tabs = [
-  { id: 'home', label: 'Início', icon: '🏠' },
+  { id: 'home', label: 'Início', icon: '🏠', route: '/' },
   { id: 'movies', label: 'Filmes', icon: '🎬' },
   { id: 'series', label: 'Séries', icon: '📺' },
   { id: 'favorites', label: 'Favoritos', icon: '⭐' },
