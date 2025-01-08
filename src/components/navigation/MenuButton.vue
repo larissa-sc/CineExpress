@@ -3,11 +3,11 @@
 defineProps({
   isOpen: {
     type: Boolean,
-    required: true,
+    required: true,    /* Esta prop indica se o menu está aberto ou não */
   },
 });
 
-defineEmits(['toggle']);
+defineEmits(['toggle']);     /*É um evento que será emitido quando o botão for clicado*/
 </script>
 
 
@@ -28,7 +28,7 @@ defineEmits(['toggle']);
   position: fixed;
   top: 1rem;
   left: 1rem;
-  display: flex;
+  display: flex;     /* Usa flexbox para alinhar os elementos <span> dentro do botão */
   flex-direction: column;
   justify-content: space-around;
   width: 2rem;
@@ -50,6 +50,7 @@ defineEmits(['toggle']);
   transform-origin: 1px;
 }
 
+/* Estiliza as linhas */
 .menu-button.open span:first-child {
   transform: rotate(45deg);
 }

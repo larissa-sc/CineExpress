@@ -10,17 +10,18 @@ defineProps({
   }
 })
 
-defineEmits(['close'])
+defineEmits(['close'])   /* define o fechamento dao menu */
 
 const tabs = [
   { id: 'home', label: 'Início', icon: '🏠', route: '/' },
   { id: 'movies', label: 'Filmes', icon: '🎬' },
   { id: 'series', label: 'Séries', icon: '📺' },
   { id: 'favorites', label: 'Favoritos', icon: '⭐' },
-  { id: 'categories', label: 'Categorias', icon: '📑' }
+  { id: 'categories', label: 'Categorias', icon: '📑' },
+  { id: 'login', label: 'Login', icon: '😊'}
 ]
 
-const activeTab = ref('home')
+const activeTab = ref('home')    /*referência reativa que mantém a aba ativa atual */
 </script>
 
 <template>
@@ -63,7 +64,7 @@ ul {
 }
 
 li {
-  padding: 1rem 1.5rem;
+  padding: 1rem 2rem;
   cursor: pointer;
   display: flex;
   align-items: center;

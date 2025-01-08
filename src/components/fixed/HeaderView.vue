@@ -1,5 +1,5 @@
 <script setup>
-import SideMenu from '../navigation/SideMenu.vue';
+import SideMenu from './SideMenu.vue';
 </script>
 
 <template>
@@ -23,6 +23,7 @@ import SideMenu from '../navigation/SideMenu.vue';
 
 <style scoped>
 .header {
+  position: relative;
   background-color: #108d9b;
   padding: 1rem 2rem;
   display: flex;
@@ -31,7 +32,9 @@ import SideMenu from '../navigation/SideMenu.vue';
 }
 
 .logo-container {
+  position: relative;
   display: flex;
+  left: 10px;
   align-items: center;
 }
 
@@ -40,6 +43,7 @@ import SideMenu from '../navigation/SideMenu.vue';
 }
 
 .search-container {
+  position: relative;
   display: flex;
   gap: 0.5rem;
 }
@@ -60,6 +64,7 @@ import SideMenu from '../navigation/SideMenu.vue';
 }
 
 .auth-container {
+  position: relative;
   display: flex;
   align-items: center;
 }

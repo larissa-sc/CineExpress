@@ -2,24 +2,29 @@
 import { ref, onMounted } from 'vue'
 
 const currentSlide = ref(0)  /*armazena o índice do slide atual*/
-const slides = ref([
+const slides = ref([   /*variável reativa que armazena um array de objetos*/
   {
     image: 'harry.jpg',
     title: 'NOME DA NOTÍCIA',
     subtitle: 'Subtítulo/ resumo notícia'
   },
-  // Adicione mais slidess
+  {
+    image: 'xxx',
+    title: 'NOME DA NOTÍCIA',
+    subtitle: 'subtítulo'
+  },
+  // Adicione mais slides
 ])
 
-const nextSlide = () => {
+const nextSlide = () => {    /*incrementa o índice do slide atual. Se chegar ao último slide, volta ao primeiro*/
   currentSlide.value = (currentSlide.value + 1) % slides.value.length
 }
 
-const prevSlide = () => {
+const prevSlide = () => {    /*retorna ao anterior*/
   currentSlide.value = currentSlide.value === 0 ? slides.value.length - 1 : currentSlide.value - 1
 }
 
-onMounted(() => {
+onMounted(() => {      /*Utiliza onMounted para definir um intervalo que chama o próximo slide a cada 5 segundos (5000 milissegundos)*/
   setInterval(nextSlide, 5000)
 })
 </script>
@@ -46,12 +51,12 @@ onMounted(() => {
 <style scoped>
 .carousel {
   position: relative;
-  height: 400px;
+  height: 400px;   /*altura da div*/
   background: #333;
-  margin: 2rem 2rem;  /*define a distância das bordas do carrossel*/
+  margin: 2rem 2rem;  /*define a distância das bordas do carrossel em relação a página*/
 }
 
-.carousel-button {
+.carousel-button {    /*Estiliza os botões de navegação (anterior e próximo), posicionando-os no centro verticalmente*/
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -65,14 +70,14 @@ onMounted(() => {
 .prev { left: 0; }
 .next { right: 0; }
 
-.carousel-content {
+.carousel-content {    /*Posiciona as informações do slide na parte inferior esquerda*/
   position: absolute;
   bottom: 2rem;
   left: 2rem;
   color: white;
 }
 
-.carousel-dots {
+.carousel-dots {     /*Centraliza os pontos de navegação horizontalmente na parte inferior*/
   position: absolute;
   bottom: 1rem;
   left: 50%;

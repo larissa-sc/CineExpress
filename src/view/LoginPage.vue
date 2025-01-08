@@ -1,5 +1,5 @@
 <template>
-    <HeaderView />
+  <HeaderView />
   <div class="login-page">
     <h1>Página de Login</h1>
     <form @submit.prevent="submitLogin">
