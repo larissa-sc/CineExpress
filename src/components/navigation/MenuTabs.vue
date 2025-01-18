@@ -2,6 +2,7 @@
 /* eslint-disable no-undef */
 
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 defineProps({
   isOpen: {
@@ -10,18 +11,25 @@ defineProps({
   }
 })
 
-defineEmits(['close'])   /* define o fechamento dao menu */
+defineEmits(['close'])   /* define o fechamento do menu */
 
 const tabs = [
   { id: 'home', label: 'Início', icon: '🏠', route: '/' },
-  { id: 'movies', label: 'Filmes', icon: '🎬' },
-  { id: 'series', label: 'Séries', icon: '📺' },
-  { id: 'favorites', label: 'Favoritos', icon: '⭐' },
-  { id: 'categories', label: 'Categorias', icon: '📑' },
-  { id: 'login', label: 'Login', icon: '😊'}
+  { id: 'movies', label: 'Filmes', icon: '🎬', route: '/movies' },
+  { id: 'series', label: 'Séries', icon: '📺', route: '/series' },
+  { id: 'news', label: 'Notícias', icon: '📰', route: '/news' },
+  { id: 'login', label: 'Login', icon: '😊', route: '/login' }
 ]
 
 const activeTab = ref('home')    /*referência reativa que mantém a aba ativa atual */
+const router = useRouter()
+
+const navigate = (tab) => {
+  activeTab.value = tab.id
+  if (tab.route) {
+    router.push(tab.route)
+  }
+}
 </script>
 
 <template>
@@ -31,7 +39,7 @@ const activeTab = ref('home')    /*referência reativa que mantém a aba ativa a
         v-for="tab in tabs" 
         :key="tab.id"
         :class="{ active: activeTab === tab.id }"
-        @click="activeTab = tab.id"
+        @click="navigate(tab)"
       >
         <span class="tab-icon">{{ tab.icon }}</span>
         <span class="tab-label">{{ tab.label }}</span>

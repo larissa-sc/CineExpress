@@ -1,6 +1,6 @@
 <script setup>
 import HeaderView from '../components/fixed/HeaderView.vue'
-import MovieCard from './components/MovieCard.vue';
+import MovieCard from '../components/navigation/movies/MovieCard.vue'
 
 const movies = [
   {
