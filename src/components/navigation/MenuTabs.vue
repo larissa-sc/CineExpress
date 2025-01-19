@@ -81,10 +81,6 @@ li {
 }
 
 li:hover {
-  background-color: #333;
-}
-
-li.active {
   background-color: #ff6b00;
   color: white;
 }

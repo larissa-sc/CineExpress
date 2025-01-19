@@ -16,12 +16,17 @@ function submitLogin() {
   <HeaderView />
   <div class="login-page">
     <div class="forms-login">
-    <h1>Faça seu Login</h1>
+    <h1>FAÇA SEU LOGIN</h1>
+    <div id="line"/>
     <form @submit.prevent="submitLogin">
-      <label for="email">E-mail:</label>
-      <input id="email" type="email" v-model="email" placeholder="Digite seu e-mail" />
+      <label for="email">E-mail:*</label>
+      <input 
+            id="email" 
+            type="email" 
+            v-model="email" 
+            placeholder="Digite seu e-mail" />
 
-      <label for="password">Senha:</label>
+      <label for="password">Senha:*</label>
       <input
         id="password"
         type="password"
@@ -30,19 +35,19 @@ function submitLogin() {
       />
 
       <button type="submit">Entrar</button>
+      <div id="register"><router-link to="/register" class="register"> Não é Cadastrado? Clique aqui!</router-link></div>
     </form>
   </div>
   </div>
 </template>
 
 <style scoped>
-.login-page {
 
+.login-page {
   background-image: url(../assets/backgroundLogin.jpg);
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .forms-login{
@@ -50,22 +55,26 @@ function submitLogin() {
   color: #108d9b;
   padding: 10%;      /* margem interna */
   margin: 10%;       /* margem externa */
-  /*display: flex;
+  display: flex;
   flex-direction: column;
-  align-items: center; */
+
 }
 
-h1{
-  margin-bottom: 80px;
+#line{
+  color: #ff6b00;
+  width: 300px;
+  border: 1px solid;
+  margin-bottom: 50px;
 }
 
 label {
-  margin-top: 15px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
 }
 
 input {
+  width: 100%;
   padding: 10px;
   margin-top: 5px;
   border-radius: 5px;
@@ -73,16 +82,33 @@ input {
 }
 
 button {
-  margin-top: 20px;
+  margin-top: 30px;
   padding: 10px 20px;
   background-color: #108f9c;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
+  display: flex;
+  justify-self: center;
 }
 
 button:hover {
   background-color: #0a6671;
+}
+
+#register{
+  padding-top: 40px;
+  justify-self: center;
+}
+
+.register{
+  cursor: pointer;
+  color: white;
+  text-decoration-color: none;
+}
+
+.register:hover{
+  color:#ff6b00
 }
 </style>

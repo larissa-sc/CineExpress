@@ -61,7 +61,6 @@ const movies = [
 </template>
 
 <style>
-* { margin: 0; padding: 0; }
 .app-container {
   margin: 0;
   padding: 0;
@@ -101,7 +100,7 @@ const movies = [
     width: 100%;
   }
 
-  .movies-grid {
+  .movies-grid {  
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
 }

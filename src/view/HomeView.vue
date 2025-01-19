@@ -19,8 +19,6 @@ import SeriesSection from '../components/navigation/home/SeriesSection.vue'
 <style>
 * { margin: 0; padding: 0; }
   .app-container {
-    margin: 0;
-    padding: 0;
     width: 100%;
     height: 100%;
     background-color: #1a1a1a;
