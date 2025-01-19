@@ -1,6 +1,6 @@
 <script setup>
-import HeaderView from '../components/fixed/HeaderView.vue'
-import MovieCard from '../components/navigation/movies/MovieCard.vue'
+import HeaderView from '../components/fixed/HeaderView.vue';
+import MovieCard from '../components/navigation/movies/MovieCard.vue';
 
 const movies = [
   {
@@ -40,7 +40,7 @@ const movies = [
   <div class="app-container">
     <HeaderView />
     <main>
-        <div class="filters">
+      <div class="filters">
         <select>
           <option value="">Filtrar por gênero</option>
           <option value="action">Ação</option>
@@ -62,14 +62,15 @@ const movies = [
 
 <style>
 * { margin: 0; padding: 0; }
-  .app-container {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #1a1a1a;
-    color: white;
+.app-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1a1a1a;
+  color: white;
 }
+
 .filters {
   padding: 1rem;
   max-width: 1200px;

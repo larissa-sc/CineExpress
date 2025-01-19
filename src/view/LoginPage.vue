@@ -1,7 +1,22 @@
+<script setup>
+import HeaderView from '@/components/fixed/HeaderView.vue';
+
+import { ref } from 'vue';
+
+const email = ref('');
+const password = ref('');
+
+function submitLogin() {
+  console.log('E-mail:', email.value);
+  console.log('Senha:', password.value);
+}
+</script>
+
 <template>
   <HeaderView />
   <div class="login-page">
-    <h1>Página de Login</h1>
+    <div class="forms-login">
+    <h1>Faça seu Login</h1>
     <form @submit.prevent="submitLogin">
       <label for="email">E-mail:</label>
       <input id="email" type="email" v-model="email" placeholder="Digite seu e-mail" />
@@ -17,32 +32,37 @@
       <button type="submit">Entrar</button>
     </form>
   </div>
+  </div>
 </template>
-
-<script setup>
-import HeaderView from '@/components/fixed/HeaderView.vue';
-
-import { ref } from 'vue';
-
-const email = ref('');
-const password = ref('');
-
-function submitLogin() {
-  console.log('E-mail:', email.value);
-  console.log('Senha:', password.value);
-}
-</script>
 
 <style scoped>
 .login-page {
+
+  background-image: url(../assets/backgroundLogin.jpg);
+  height: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 50px;
+}
+
+.forms-login{
+  background-color: #1a1a1a;
+  color: #108d9b;
+  padding: 10%;      /* margem interna */
+  margin: 10%;       /* margem externa */
+  /*display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+
+h1{
+  margin-bottom: 80px;
 }
 
 label {
   margin-top: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 input {

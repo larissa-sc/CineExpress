@@ -15,7 +15,7 @@ defineEmits(['close'])   /* define o fechamento do menu */
 
 const tabs = [
   { id: 'home', label: 'Início', icon: '🏠', route: '/' },
-  { id: 'movies', label: 'Filmes', icon: '🎬', route: '/movies' },
+  { id: 'movies', label: 'Filmes', icon: '🎬', route: '/movie' },
   { id: 'series', label: 'Séries', icon: '📺', route: '/series' },
   { id: 'news', label: 'Notícias', icon: '📰', route: '/news' },
   { id: 'login', label: 'Login', icon: '😊', route: '/login' }

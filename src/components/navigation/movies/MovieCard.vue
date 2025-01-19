@@ -1,10 +1,10 @@
 <script setup>
-const props = defineProps({
-  movie: {
-    type: Object,
-    required: true
-  }
-});
+//const props = defineProps({
+//  movie: {
+//    type: Object,
+//    required: true
+//  }
+//});
 
 const renderStars = (rating) => {
   return '★'.repeat(Math.floor(rating)) + '☆'.repeat(5 - Math.floor(rating));
@@ -13,11 +13,11 @@ const renderStars = (rating) => {
 
 <template>
   <div class="movie-card">
-    <img :src="movie.image" :alt="movie.title">
+    <img :src="props.movie.image" :alt="props.movie.title">
     <div class="movie-info">
-      <h3>{{ movie.title }}</h3>
-      <div class="rating" :title="movie.rating">
-        {{ renderStars(movie.rating) }}
+      <h3>{{ props.movie.title }}</h3>
+      <div class="rating" :title="props.movie.rating">
+        {{ renderStars(props.movie.rating) }}
       </div>
     </div>
   </div>
