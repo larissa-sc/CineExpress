@@ -96,18 +96,12 @@ input {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
 }
 
 .loginButton {
   margin-top: 30px;
   padding: 10px 20px;
   background-color: #108f9c;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
   display: flex;
   justify-self: center;
 }

@@ -57,12 +57,7 @@ import SideMenu from './SideMenu.vue';
 
 .search-button, .login-button, .register-button {
   background: #ff6b00;
-  border: none;
-  border-radius: 4px;
   padding: 0.5rem 1rem;
-  cursor: pointer;
-  color: white;
-  font-weight: bold;
 }
 
 .auth-container {
