@@ -15,13 +15,3 @@ import SeriesSection from '../components/navigation/home/SeriesSection.vue'
     </main>
   </div>
 </template>
-
-<style>
-* { margin: 0; padding: 0; }
-  .app-container {
-    width: 100%;
-    height: 100%;
-    background-color: #1a1a1a;
-    color: white;
-}
-</style>

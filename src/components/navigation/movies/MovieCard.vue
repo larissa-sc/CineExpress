@@ -13,11 +13,11 @@ const renderStars = (rating) => {
 
 <template>
   <div class="movie-card">
-    <img :src="props.movie.image" :alt="props.movie.title">
+    <img :src="movie.image" :alt="movie.title">
     <div class="movie-info">
-      <h3>{{ props.movie.title }}</h3>
-      <div class="rating" :title="props.movie.rating">
-        {{ renderStars(props.movie.rating) }}
+      <h3>{{ movie.title }}</h3>
+      <div class="rating" :title="movie.rating">
+        {{ renderStars(movie.rating) }}
       </div>
     </div>
   </div>

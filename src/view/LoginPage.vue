@@ -2,13 +2,32 @@
 import HeaderView from '@/components/fixed/HeaderView.vue';
 
 import { ref } from 'vue';
+import { auth } from '../services/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
-const email = ref('');
-const password = ref('');
 
-function submitLogin() {
-  console.log('E-mail:', email.value);
-  console.log('Senha:', password.value);
+const loginData = ref({
+  email: '',
+  password: ''
+});
+
+const loginUser = async () => {
+  try {const userCredential = await signInWithEmailAndPassword(
+      auth,
+      loginData.value.email,
+      loginData.value.password
+    );
+
+    const user = userCredential.user;
+    console.log('Usuário logado:', user);
+    alert('Login realizado com sucesso!');
+
+    loginData.value.email = ''
+    loginData.value.password = ''
+  } catch (error) {
+    console.error('Erro ao fazer login:', error.message);
+    alert('Email ou senha incorretos!');
+  }
 }
 </script>
 
@@ -23,18 +42,18 @@ function submitLogin() {
       <input 
             id="email" 
             type="email" 
-            v-model="email" 
+            v-model="loginData.email" 
             placeholder="Digite seu e-mail" />
 
       <label for="password">Senha:*</label>
       <input
         id="password"
         type="password"
-        v-model="password"
+        v-model="loginData.password"
         placeholder="Digite sua senha"
       />
 
-      <button type="submit">Entrar</button>
+      <button  @click="loginUser" class="loginButton" type="submit">Entrar</button>
       <div id="register"><router-link to="/register" class="register"> Não é Cadastrado? Clique aqui!</router-link></div>
     </form>
   </div>
@@ -81,7 +100,7 @@ input {
   border: 1px solid #ccc;
 }
 
-button {
+.loginButton {
   margin-top: 30px;
   padding: 10px 20px;
   background-color: #108f9c;
@@ -93,7 +112,7 @@ button {
   justify-self: center;
 }
 
-button:hover {
+.loginButton:hover {
   background-color: #0a6671;
 }
 
