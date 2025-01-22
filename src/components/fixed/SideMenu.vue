@@ -25,7 +25,7 @@ const toggleMenu = () => {      /*Define uma função toggleMenu que alterna o e
 
 <style scoped>
 .side-menu-container {
-  position: fixed;
+  position: fixed;   /*posição fixa*/
   top: 0;
   left: 0;
   z-index: 1000;

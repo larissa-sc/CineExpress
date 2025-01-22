@@ -1,4 +1,5 @@
 <script setup>
+// importar o menu suspenso para o cabeçalho
 import SideMenu from './SideMenu.vue';
 </script>
 
@@ -23,12 +24,12 @@ import SideMenu from './SideMenu.vue';
 
 <style scoped>
 .header {
-  position: relative;
-  background-color: #108d9b;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  position: relative;       /*faz com que se adapte à página*/
+  background-color: #108d9b;  /* cor de fundo */
+  padding: 1rem 2rem;    /*espaço interno*/
+  display: flex;       /*itens internos de forma flexível*/
+  justify-content: space-between;   /*alinha de forma linear os itens*/
+  align-items: flex-end;   /*itens alinhados na borda inferior*/
 }
 
 .logo-container {
@@ -39,7 +40,7 @@ import SideMenu from './SideMenu.vue';
 }
 
 .logo {
-  height: 100px; /* Ajuste o tamanho da logo conforme necessário */
+  height: 100px;     /*tamanho da logo definido*/
 }
 
 .search-container {
@@ -50,14 +51,13 @@ import SideMenu from './SideMenu.vue';
 
 .search-input {
   padding: 0.5rem;
-  border-radius: 4px;
   border: none;
-  width: 250px; /* Ajuste a largura do campo de busca */
+  width: 250px;    /* Ajuste a largura do campo de busca */
 }
 
 .search-button, .login-button, .register-button {
   background: #ff6b00;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem;    /* espaço interno */
 }
 
 .auth-container {
@@ -68,11 +68,11 @@ import SideMenu from './SideMenu.vue';
 
 .auth-link {
   color: white;
-  text-decoration: none;
+  text-decoration: none;   /*tira o sublinhado do link*/
   margin-left: 1rem;
 }
 
 .login-button:hover, .register-button:hover {
-  background-color: #e96507;
+  background-color: #e96507;      /*altera a cor ao passar o mouse*/
 }
 </style>

@@ -2,18 +2,19 @@
 
 /*montando a base do CSS de todas as páginas (tudo o que tem em comum)*/
 
+/*input = caixa de inserção de informações*/
 input{
-  background-color: white;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  color: #1a1a1a;
+  background-color: white;   /*cor de fundo*/
+  border-radius: 5px;          /*raio da borda da caixa*/
+  border: 1px solid #ccc;    /*tamanho, tipo e cor da borda*/
+  color: #1a1a1a;            /*cor do texto que será inserido*/
 }
 
+/*button = botão de confirmação de algo*/
 button{
-  cursor: pointer;
-  color: white;
-  font-weight: bold;
-  border-radius: 10px;
-  border: none;
-  font-weight: bold;
+  cursor: pointer;       /*cursor que aparece ao passar o mouse*/
+  color: white;        /*cor do texto*/
+  font-weight: bold;     /*txt em negrito*/
+  border-radius: 10px;   /*raio da borda*/
+  border: none;          /*sem borda definida*/
 }
