@@ -31,7 +31,7 @@ onMounted(() => {      /*Utiliza onMounted para definir um intervalo que chama o
 
 <template>
   <div class="carousel">
-    <button class="carousel-button prev" @click="prevSlide">❮</button>
+    <button class="carousel-button prev" @click="prevSlide">❮</button>  <!--click ativa o clique do botão e a ação que deve fazer-->
     <div class="carousel-content">
       <h2>{{ slides[currentSlide].title }}</h2>
       <p>{{ slides[currentSlide].subtitle }}</p>
