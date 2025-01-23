@@ -2,18 +2,48 @@
 import HeaderView from '@/components/fixed/HeaderView.vue';
 
 import { ref } from 'vue';
+import { auth } from '@/services/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
-const name = ref('');
-const phone = ref('');
-const email = ref('');
-const password = ref('');
+const newUser = ref({
+  name: '',
+  phone: '',
+  email: '',
+  password: '',
+  repeatPassword: ''
+});
 
-function submitRegister() {
-  console.log('Nome:', name.value);
-  console.log('Telefone:', phone.value);
-  console.log('E-mail:', email.value);
-  console.log('Senha:', password.value);
-}
+const registerUser = async () => {
+  if (newUser.value.password !== newUser.value.repeatPassword) {
+    alert('As senhas não são iguais!');
+    return;
+  }
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      newUser.value.name,
+      newUser.value.phone,
+      newUser.value.email,
+      newUser.value.password
+    );
+
+    const user = userCredential.user;
+    console.log('Usuário registrado:', user.value.name);
+
+    alert('Conta criada com sucesso!');
+
+    newUser.value.name = '';
+    newUser.value.phone = '';
+    newUser.value.email = '';
+    newUser.value.password = '';
+    newUser.value.repeatPassword = '';
+    
+  } catch (error) {
+    console.error('Erro ao registrar:', error.message);
+    alert(error.message);
+  }
+};
 </script>
 
 <template>
@@ -27,32 +57,39 @@ function submitRegister() {
       <input 
             id="name" 
             type="name" 
-            v-model="name" 
+            v-model="newUser.name" 
             placeholder="Digite seu nome completo" />
 
       <label for="phone">Telefone:*</label>
       <input
         id="phone"
         type="phone"
-        v-model="phone"
+        v-model="newUser.phone"
         placeholder="Digite seu número"
       />
       <label for="email">E-mail:*</label>
       <input 
             id="email" 
             type="email" 
-            v-model="email" 
+            v-model="newUser.email" 
             placeholder="Digite seu e-mail" />
 
       <label for="password">Senha:*</label>
       <input
         id="password"
         type="password"
-        v-model="password"
+        v-model="newUser.password"
         placeholder="Digite sua senha"
       />
 
-      <button type="submit">Enviar</button>
+      <label for="name">Repita sua senha:*</label>
+      <input 
+            id="passwordRepeat" 
+            type="password" 
+            v-model="newUser.repeatPassword" 
+            placeholder="Digite seu nome completo" />
+
+      <button @click="registerUser" type="submit">Enviar</button>
       <div id="login"><router-link to="/login" class="login"> Já tem cadastro? Clique aqui!</router-link></div>
     </form>
   </div>
