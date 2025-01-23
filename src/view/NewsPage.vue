@@ -3,10 +3,9 @@ import HeaderView from '../components/fixed/HeaderView.vue'
 </script>
 
 <template>
-  <div class="app-container">
-    <HeaderView />
+  <HeaderView />
     <main>
-        
+        <div>
+        </div>
     </main>
-  </div>
 </template>

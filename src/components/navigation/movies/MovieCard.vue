@@ -1,7 +1,7 @@
 <script setup>
 //const props = defineProps({
-//  movie: {
-//    type: Object,
+//  movies: {
+//    type: array,
 //    required: true
 //  }
 //});

@@ -2,48 +2,20 @@
 import HeaderView from '../components/fixed/HeaderView.vue';
 import MovieCard from '../components/navigation/movies/MovieCard.vue';
 
-const movies = [
-  {
-    id: 1,
-    title: 'Harry Potter',
-    image: 'https://picsum.photos/200/300',
-    rating: 4.5
-  },
-  {
-    id: 2,
-    title: 'Frozen 2',
-    image: 'https://picsum.photos/200/300',
-    rating: 4.8
-  },
-  {
-    id: 3,
-    title: 'Star Wars',
-    image: 'https://picsum.photos/200/300',
-    rating: 4.7
-  },
-  {
-    id: 4,
-    title: 'Inside Out',
-    image: 'https://picsum.photos/200/300',
-    rating: 4.6
-  },
-  {
-    id: 5,
-    title: 'Megamente',
-    image: 'https://picsum.photos/200/300',
-    rating: 4.4
-  }
-];
+//const movies = [
+//];
 </script>
 
 <template>
-  <div class="app-container">
-    <HeaderView />
+  <HeaderView />
     <main>
       <div class="filters">
         <select>
           <option value="">Filtrar por gênero</option>
+          <option value="a-z">A/Z</option>
+          <option value="z-a">Z/A</option>
           <option value="action">Ação</option>
+          <option value="animation">Animação</option>
           <option value="comedy">Comédia</option>
           <option value="drama">Drama</option>
         </select>
@@ -56,20 +28,10 @@ const movies = [
           :movie="movie"
         />
       </div>
-    </main>
-  </div>
+  </main>
 </template>
 
 <style>
-.app-container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #1a1a1a;
-  color: white;
-}
-
 .filters {
   padding: 1rem;
   max-width: 1200px;
