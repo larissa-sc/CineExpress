@@ -1,10 +1,26 @@
 <script setup>
-//const props = defineProps({
-//  movies: {
-//    type: array,
-//    required: true
-//  }
-//});
+import { defineProps, computed } from 'vue';
+
+const props = defineProps({
+  title: {
+    type: String,
+    required: true
+  },
+  imageSrc: {
+    type: String,
+    required: true,
+    default: ''
+  },
+  rating: {
+    type: Number,
+    required: true
+  }
+});
+
+const fullImageUrl = computed(() => {  
+  let url = props.imageSrc && props.imageSrc.trim() !== '' ? 'https:' + props.imageSrc : require('../../../assets/images/backgroundLogin.jpg');
+  return url.replace('t_thumb', 't_cover_big');
+});
 
 const renderStars = (rating) => {
   return '★'.repeat(Math.floor(rating)) + '☆'.repeat(5 - Math.floor(rating));
@@ -13,13 +29,11 @@ const renderStars = (rating) => {
 
 <template>
   <div class="component-card">
-    <div v-for="movie in movies" :key="movie.title" class="component">
-      <img :src="movie.image" :alt="movie.title">
-      <h3>{{ movie.title }}</h3>
-    </div>
-    <div class="rating" :title="movie.rating">
-        {{ renderStars(movie.rating) }}
-    </div>
+    <img :src="fullImageUrl" :alt="Capa">
+    <h3>{{ title }}</h3>
+  </div>
+  <div class="rating">
+    {{ renderStars(rating) }}
   </div>
 </template>
 
