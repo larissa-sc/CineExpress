@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import MenuButton from '../navigation/MenuButton.vue'
-import MenuTabs from '../navigation/MenuTabs.vue'
+import MenuButton from '../navigation/menu/MenuButton.vue'
+import MenuTabs from '../navigation/menu/MenuTabs.vue'
 
 const isMenuOpen = ref(false)    /*Declara uma variável reativa isMenuOpen que armazena o estado do menu (aberto ou fechado), iniciando como fechado*/
 

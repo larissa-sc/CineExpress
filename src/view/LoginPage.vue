@@ -63,7 +63,7 @@ const loginUser = async () => {
 <style scoped>
 
 .login-page {
-  background-image: url(../assets/backgroundLogin.jpg);
+  background-image: url(../assets/images/backgroundLogin.jpg);
   height: 100%;
   display: flex;
   justify-content: center;

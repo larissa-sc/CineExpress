@@ -1,6 +1,6 @@
 <script setup>
 import HeaderView from '../components/fixed/HeaderView.vue';
-import ComponentCard from '../components/navigation/movies/ComponentCard.vue';
+import ComponentCard from '../components/navigation/component/ComponentCard.vue';
 
 //const movies = [
 //];
@@ -11,13 +11,9 @@ import ComponentCard from '../components/navigation/movies/ComponentCard.vue';
     <main>
       <div class="filters">
         <select>
-          <option value="">Filtrar por gênero</option>
+          <option value="">Filtrar</option>
           <option value="a-z">A/Z</option>
           <option value="z-a">Z/A</option>
-          <option value="action">Ação</option>
-          <option value="animation">Animação</option>
-          <option value="comedy">Comédia</option>
-          <option value="drama">Drama</option>
         </select>
       </div>
 

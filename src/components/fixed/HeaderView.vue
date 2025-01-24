@@ -7,7 +7,7 @@ import SideMenu from './SideMenu.vue';
   <header class="header">
     <SideMenu />
     <div class="logo-container">
-      <img class="logo" src="../../assets/logo.png" alt="Logo" />
+      <img class="logo" src="../../assets/images/logo.png" alt="Logo" />
     </div>
     <div class="search-container">
       <input type="text" placeholder="Buscar..." class="search-input" />
