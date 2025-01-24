@@ -1,6 +1,6 @@
 <script setup>
 import HeaderView from '../components/fixed/HeaderView.vue';
-import MovieCard from '../components/navigation/movies/MovieCard.vue';
+import ComponentCard from '../components/navigation/movies/ComponentCard.vue';
 
 //const movies = [
 //];
@@ -22,7 +22,7 @@ import MovieCard from '../components/navigation/movies/MovieCard.vue';
       </div>
 
       <div class="movies-grid">
-        <MovieCard 
+        <ComponentCard 
           v-for="movie in movies" 
           :key="movie.id"
           :movie="movie"
