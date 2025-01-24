@@ -34,13 +34,13 @@ const renderStars = (rating) => {
 
 <template>
   <div class="component-card">
-    <!-- Exibe a imagem do livro ou a imagem padrão gerada pela computed property -->
+    <!-- Exibe a imagem de capa ou a imagem padrão gerada pela computed property -->
     <img :src="fullImageUrl" :alt="Capa">
-    <!-- Exibe o título do livro -->
+    <!-- Exibe o título -->
     <h3>{{ title }}</h3>
   </div>
   <div class="rating">
-    <!-- Exibe a classificação do livro usando estrelas -->
+    <!-- Exibe a classificação usando estrelas -->
     {{ renderStars(rating) }}
   </div>
 </template>
