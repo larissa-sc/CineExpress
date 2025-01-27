@@ -11,6 +11,8 @@ const loginData = ref({
   password: ''
 });
 
+const loginService = new loginService
+
 const loginUser = async () => {
   try {const userCredential = await signInWithEmailAndPassword(
       auth,
