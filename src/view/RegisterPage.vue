@@ -4,6 +4,7 @@ import HeaderView from '@/components/fixed/HeaderView.vue';
 import { ref } from 'vue';
 import { auth } from '@/services/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import router from '@/routes';
 
 const newUser = ref({
   email: '',
@@ -44,9 +45,11 @@ const registerUser = async () => {
     );
 
     const user = userCredential.user;
-    console.log('Usuário registrado:', user.value.email);
+    console.log('Usuário registrado:', user.email);
 
     alert('Conta criada com sucesso!');
+
+    router.push('/home');
 
 
     newUser.value.email = '';
