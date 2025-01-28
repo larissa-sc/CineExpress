@@ -1,22 +1,14 @@
 <script setup>
-const movies = [
-  {
-    title: 'Harry Potter',
-    image: '/path/to/harry-potter.jpg'
-  },
-  {
-    title: 'Frozen',
-    image: '/path/to/frozen.jpg'
-  },
-  // Add more movies
-]
+
+
 </script>
 
 <template>
   <section class="movie-section">
-    <h2 class="section-title">FILMES EM DESTAQUE 2024</h2>
+    <h2 class="section-title">FILMES EM DESTAQUE</h2>
     <div class="movie-grid">
-      <div v-for="movie in movies" :key="movie.title" class="movie-card">
+      <div 
+        v-for="movie in movies" :key="movie.title" class="movie-card">
         <img :src="movie.image" :alt="movie.title">
         <h3>{{ movie.title }}</h3>
       </div>

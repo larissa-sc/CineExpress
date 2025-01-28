@@ -59,7 +59,10 @@ class DAOService {
 
             // Itera sobre cada documento e adiciona ao array de documentos
             querySnapshot.forEach(doc => {
-                documents.push({ id: doc.id, ...doc.data() });
+                documents.push({  id: doc.id,
+                    title: documents.original_title,
+                    overview: documents.overview,
+                    coverUrl: documents.poster_path });
             });
 
             return documents; // Retorna o array de documentos

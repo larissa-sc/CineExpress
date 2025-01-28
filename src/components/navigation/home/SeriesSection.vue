@@ -14,9 +14,12 @@ const series = [
 
 <template>
   <section class="series-section">
-    <h2 class="section-title">SÉRIES EM DESTAQUE 2024</h2>
+    <h2 class="section-title">SÉRIES EM DESTAQUE</h2>
     <div class="series-grid">
-      <div v-for="serie in series" :key="serie.title" class="series-card">
+      <div 
+      v-for="serie in series" 
+      :key="serie.title" 
+      class="series-card">
         <img :src="serie.image" :alt="serie.title">
         <h3>{{ serie.title }}</h3>
       </div>
