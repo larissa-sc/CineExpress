@@ -1,36 +1,27 @@
 <script setup>
 import HeaderView from '@/components/fixed/HeaderView.vue';
-
 import { ref } from 'vue';
-import { auth } from '../services/firebase';
+import router from '@/routes';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 
-const loginData = ref({
-  email: '',
-  password: ''
-});
-
-const loginService = new loginService
+const email = ref('');
+const password = ref('');
 
 const loginUser = async () => {
-  try {const userCredential = await signInWithEmailAndPassword(
-      auth,
-      loginData.value.email,
-      loginData.value.password
-    );
+  try {
+        await signInWithEmailAndPassword(auth, email.value, password.value);
 
-    const user = userCredential.user;
-    console.log('Usuário logado:', user);
-    alert('Login realizado com sucesso!');
+        email.value='';
+        password.value='';
 
-    loginData.value.email = ''
-    loginData.value.password = ''
-  } catch (error) {
-    console.error('Erro ao fazer login:', error.message);
-    alert('Email ou senha incorretos!');
-  }
-}
+        router.push("/jogos");
+
+      } catch (error) {
+        console.log(error.code);
+        alert(error.message);
+      }
+};
 </script>
 
 <template>
@@ -39,23 +30,23 @@ const loginUser = async () => {
     <div class="forms-login">
     <h1>FAÇA SEU LOGIN</h1>
     <div id="line"/>
-    <form @submit.prevent="submitLogin">
+    <form @submit.prevent='loginUser'>
       <label for="email">E-mail:*</label>
       <input 
             id="email" 
             type="email" 
-            v-model="loginData.email" 
+            v-model="email" 
             placeholder="Digite seu e-mail" />
 
       <label for="password">Senha:*</label>
       <input
         id="password"
         type="password"
-        v-model="loginData.password"
+        v-model="password"
         placeholder="Digite sua senha"
       />
 
-      <button  @click="loginUser" class="loginButton" type="submit">Entrar</button>
+      <button class="loginButton" type="submit">Entrar</button>
       <div id="register"><router-link to="/register" class="register"> Não é Cadastrado? Clique aqui!</router-link></div>
     </form>
   </div>

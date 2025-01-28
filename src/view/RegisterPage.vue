@@ -52,7 +52,7 @@ const registerUser = async () => {
     <div class="forms-login">
     <h1>CADASTRE-SE</h1>
     <div id="line"/>
-    <form @submit.prevent="submitRegister">
+    <form @submit.prevent="registerUser">
       <label for="name">Seu nome:*</label>
       <input 
             id="name" 
@@ -89,7 +89,7 @@ const registerUser = async () => {
             v-model="newUser.repeatPassword" 
             placeholder="Digite seu nome completo" />
 
-      <button @click="registerUser" type="submit">Enviar</button>
+      <button type="submit">Enviar</button>
       <div id="login"><router-link to="/login" class="login"> Já tem cadastro? Clique aqui!</router-link></div>
     </form>
   </div>
