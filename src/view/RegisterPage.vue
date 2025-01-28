@@ -6,14 +6,31 @@ import { auth } from '@/services/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const newUser = ref({
-  name: '',
-  phone: '',
   email: '',
   password: '',
   repeatPassword: ''
 });
 
+const isEmailValid = (email) => { 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+  return emailRegex.test(email); 
+};
+
+const isPasswordValid = (password) => { 
+  return password.length >= 6;   
+};
+
 const registerUser = async () => {
+  if (!isEmailValid(newUser.value.email)) {
+        alert('Por favor, insira um e-mail válido.');
+        return;
+  }
+
+  if (!isPasswordValid(newUser.value.password)) {
+        alert('A senha deve ter pelo menos 6 caracteres.');
+        return;
+      }
+
   if (newUser.value.password !== newUser.value.repeatPassword) {
     alert('As senhas não são iguais!');
     return;
@@ -22,19 +39,16 @@ const registerUser = async () => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
-      newUser.value.name,
-      newUser.value.phone,
       newUser.value.email,
       newUser.value.password
     );
 
     const user = userCredential.user;
-    console.log('Usuário registrado:', user.value.name);
+    console.log('Usuário registrado:', user.value.email);
 
     alert('Conta criada com sucesso!');
 
-    newUser.value.name = '';
-    newUser.value.phone = '';
+
     newUser.value.email = '';
     newUser.value.password = '';
     newUser.value.repeatPassword = '';
@@ -43,6 +57,8 @@ const registerUser = async () => {
     console.error('Erro ao registrar:', error.message);
     alert(error.message);
   }
+
+  return
 };
 </script>
 
@@ -53,20 +69,7 @@ const registerUser = async () => {
     <h1>CADASTRE-SE</h1>
     <div id="line"/>
     <form @submit.prevent="registerUser">
-      <label for="name">Seu nome:*</label>
-      <input 
-            id="name" 
-            type="name" 
-            v-model="newUser.name" 
-            placeholder="Digite seu nome completo" />
 
-      <label for="phone">Telefone:*</label>
-      <input
-        id="phone"
-        type="phone"
-        v-model="newUser.phone"
-        placeholder="Digite seu número"
-      />
       <label for="email">E-mail:*</label>
       <input 
             id="email" 
