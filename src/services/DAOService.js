@@ -2,16 +2,16 @@ import { db } from '/firebase'; // Importa a instância do Firestore configurada
 import { collection, addDoc, updateDoc, deleteDoc, getDocs, getDoc, doc, query, where } from 'firebase/firestore'; // Importa funções do Firestore necessárias para CRUD e consultas
 
 class DAOService {
-    constructor(collectionPath) {
+    //constructor() {
         // Verifica se o caminho da coleção foi fornecido, caso contrário lança um erro
-        if (!collectionPath) {
-            throw new Error('Collection path must be provided');
-        }
+        //if (!collectionPath) {
+        //    throw new Error('Collection path must be provided');
+        //}
         // Define a referência da coleção no Firestore com base no caminho fornecido
-        console.log('Instância do Firestore:', db); // Verifique a instância do Firestore
-        this.collectionRef = collection(db, collectionPath); // Certifique-se de que db é a instância correta do Firestore
-        console.log('Referência da coleção:', this.collectionRef);
-    }
+       // console.log('Instância do Firestore:', db); // Verifique a instância do Firestore
+        //this.collectionRef = collection(db, collectionPath); // Certifique-se de que db é a instância correta do Firestore
+        //console.log('Referência da coleção:', this.collectionRef);
+    //}
 
     // Método assíncrono para inserir um novo documento na coleção
     async insert(object) {
@@ -53,15 +53,20 @@ class DAOService {
     }
 
     // Método assíncrono para obter todos os documentos da coleção
-    async getAll() {
+    async getAll(collectionPath) {
         try {
             // Obtém todos os documentos da coleção
-            const docSnapshot = await getDocs(this.collectionRef);
-            const documents = [];
+            const docSnapshot = await getDocs(collection(db,collectionPath));
 
-            docSnapshot.forEach(doc => {
-                documents.push({ id: doc.id, ...doc.data() });
-            });
+            const documents = docSnapshot.docs.map(doc => {
+                const data = doc.data();
+                return {
+                  id: doc.id,
+                  title: data.original_title,
+                  summary: data.overview,
+                  coverUrl: data.poster_path
+                };
+              });
 
             return documents; // Retorna o array de documentos
         } catch (error) {
