@@ -6,4 +6,4 @@ import router from './routes';
 import './services/firebase'
 import './assets/main.css'
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).mount('#app');

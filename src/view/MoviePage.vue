@@ -5,7 +5,7 @@ import HeaderView from '../components/fixed/HeaderView.vue';
 import ComponentCard from '../components/navigation/component/ComponentCard.vue';
 import DAOService from '@/services/DAOService';
 
-const moviesService = new DAOService();
+const moviesService = new DAOService('movies');
 const movies = ref([]);
 const currentPage = ref(1);
 const pageSize = ref(5);
@@ -54,7 +54,7 @@ const detailsMovies = (id) => {
 
 const getMovies = async () => {
   try {
-    movies.value = await moviesService.getAll('movies');
+    movies.value = await moviesService.getAll();
   } catch (error) {
     console.error('Erro ao buscar dados:', error);
   }
@@ -81,7 +81,7 @@ onMounted(() =>
         v-for="(movie, index) in paginatedMovies" 
         :key="index"
         :title="movie.title"
-        :coverUrl="movie.coverUrl"
+        :imageSrc="movie.coverUrl"
         @click="detailsMovies(movie.id)"
       />
     </div>

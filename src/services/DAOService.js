@@ -1,17 +1,17 @@
-import { db } from '/firebase'; // Importa a instância do Firestore configurada
+import { db } from './firebase'; // Importa a instância do Firestore configurada
 import { collection, addDoc, updateDoc, deleteDoc, getDocs, getDoc, doc, query, where } from 'firebase/firestore'; // Importa funções do Firestore necessárias para CRUD e consultas
 
 class DAOService {
-    //constructor() {
+    constructor(collectionPath) {
         // Verifica se o caminho da coleção foi fornecido, caso contrário lança um erro
-        //if (!collectionPath) {
-        //    throw new Error('Collection path must be provided');
-        //}
+        if (!collectionPath) {
+            throw new Error('Collection path must be provided');
+        }
         // Define a referência da coleção no Firestore com base no caminho fornecido
        // console.log('Instância do Firestore:', db); // Verifique a instância do Firestore
-        //this.collectionRef = collection(db, collectionPath); // Certifique-se de que db é a instância correta do Firestore
+        this.collectionRef = collection(db, collectionPath); // Certifique-se de que db é a instância correta do Firestore
         //console.log('Referência da coleção:', this.collectionRef);
-    //}
+    }
 
     // Método assíncrono para inserir um novo documento na coleção
     async insert(object) {
@@ -53,10 +53,10 @@ class DAOService {
     }
 
     // Método assíncrono para obter todos os documentos da coleção
-    async getAll(collectionPath) {
+    async getAll() {
         try {
             // Obtém todos os documentos da coleção
-            const docSnapshot = await getDocs(collection(db,collectionPath));
+            const docSnapshot = await getDocs(this.collectionRef);
 
             const documents = docSnapshot.docs.map(doc => {
                 const data = doc.data();
@@ -71,7 +71,7 @@ class DAOService {
             return documents; // Retorna o array de documentos
         } catch (error) {
             console.error('Error getting documents: ', error);
-            throw new Error('Error getting documents'); // Lança um erro em caso de falha
+            throw new Error('Erro ao extrair documentos'); // Lança um erro em caso de falha
         }
     }
 

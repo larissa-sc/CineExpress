@@ -21,9 +21,9 @@ const props = defineProps({
 // Computed property para gerar a URL completa da imagem
 const fullImageUrl = computed(() => {  
   let url = props.imageSrc && props.imageSrc.trim() !== '' 
-    ? 'https:' + props.imageSrc // Se imageSrc estiver definida e não for uma string vazia, usa essa URL
+    ? 'https://image.tmdb.org/t/p/w500' + props.imageSrc // Se imageSrc estiver definida e não for uma string vazia, usa essa URL
     : require('../../../assets/images/backgroundLogin.jpg'); // Caso contrário, usa uma imagem padrão
-  return url.replace('t_thumb', 't_cover_big'); // Substitui a parte 't_thumb' da URL por 't_cover_big'
+  return url;
 });
 
 // Função para renderizar estrelas com base na classificação
@@ -53,7 +53,7 @@ const renderStars = (rating) => {
 }
 
 .component-card {
-  background: #333; /*Cor de fundo da carta */
+  background: #333333; /*Cor de fundo da carta */
   border-radius: 8px;   /*Borda arredondada */
   overflow: hidden;   /*Esconde overflow */
   transition: transform 0.2s; /*Transição suave ao aplicar transformações */
