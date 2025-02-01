@@ -8,7 +8,9 @@ class DAOService {
             throw new Error('Collection path must be provided');
         }
         // Define a referência da coleção no Firestore com base no caminho fornecido
-        this.collectionRef = collection(db, collectionPath);
+        console.log('Instância do Firestore:', db); // Verifique a instância do Firestore
+        this.collectionRef = collection(db, collectionPath); // Certifique-se de que db é a instância correta do Firestore
+        console.log('Referência da coleção:', this.collectionRef);
     }
 
     // Método assíncrono para inserir um novo documento na coleção
@@ -54,15 +56,11 @@ class DAOService {
     async getAll() {
         try {
             // Obtém todos os documentos da coleção
-            const querySnapshot = await getDocs(this.collectionRef);
+            const docSnapshot = await getDocs(this.collectionRef);
             const documents = [];
 
-            // Itera sobre cada documento e adiciona ao array de documentos
-            querySnapshot.forEach(doc => {
-                documents.push({  id: doc.id,
-                    title: documents.original_title,
-                    overview: documents.overview,
-                    coverUrl: documents.poster_path });
+            docSnapshot.forEach(doc => {
+                documents.push({ id: doc.id, ...doc.data() });
             });
 
             return documents; // Retorna o array de documentos

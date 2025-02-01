@@ -54,16 +54,21 @@ const detailsMovies = (id) => {
 
 const getMovies = async () => {
   try {
-    const moviesData = await moviesService.getAll();
+    const rawMoviesData = await moviesService.getAll();
+    const moviesData = rawMoviesData.map(movie => ({
+      id: movie.id,
+      original_title: movie.original_title,
+      poster_path: movie.poster_path,
+    }));
     movies.value = moviesData;
   } catch (error) {
     console.error('Erro ao buscar dados:', error);
   }
 };
 
-onMounted(() => {
-  getMovies();
-});
+onMounted(() =>
+  getMovies()
+);
 </script>
 
 <template>
