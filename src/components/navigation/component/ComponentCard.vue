@@ -38,20 +38,14 @@ const renderStars = (rating) => {
     <img :src="fullImageUrl" :alt="Capa">
     <!-- Exibe o título -->
     <h3>{{ title }}</h3>
-  </div>
   <div class="rating">
     <!-- Exibe a classificação usando estrelas -->
     {{ renderStars(rating) }}
   </div>
+</div>
 </template>
 
 <style scoped>
-.movie-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /*Layout de grade responsiva */
-  gap: 1rem; /*Espaçamento entre os itens da grade */
-}
-
 .component-card {
   background: #333333; /*Cor de fundo da carta */
   border-radius: 8px;   /*Borda arredondada */
@@ -60,6 +54,7 @@ const renderStars = (rating) => {
   display: flex; /* Flex layout para conteúdo interno */
   flex-direction: column; /* Alinha o conteúdo em coluna */
   align-items: center; /* Centraliza o conteúdo horizontalmente */
+  cursor: pointer;
 }
 
 .component-card:hover {
