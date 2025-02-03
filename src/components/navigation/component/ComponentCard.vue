@@ -57,6 +57,9 @@ const renderStars = (rating) => {
   border-radius: 8px;   /*Borda arredondada */
   overflow: hidden;   /*Esconde overflow */
   transition: transform 0.2s; /*Transição suave ao aplicar transformações */
+  display: flex; /* Flex layout para conteúdo interno */
+  flex-direction: column; /* Alinha o conteúdo em coluna */
+  align-items: center; /* Centraliza o conteúdo horizontalmente */
 }
 
 .component-card:hover {

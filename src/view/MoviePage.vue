@@ -8,7 +8,7 @@ import DAOService from '@/services/DAOService';
 const moviesService = new DAOService('movies');
 const movies = ref([]);
 const currentPage = ref(1);
-const pageSize = ref(5);
+const pageSize = ref(16);
 
 const totalPages = computed(() => {
   return Math.ceil(movies.value.length / pageSize.value);
@@ -115,11 +115,16 @@ onMounted(() =>
 
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 2rem;
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  justify-items: center;
+}
+
+.movies-grid > * {
+  width: 100%; /* Garante que todos os itens na grid ocupem 100% da coluna */
+  box-sizing: border-box; /* Inclui padding e border na largura do elemento */
 }
 
 .pagination {
@@ -133,6 +138,7 @@ onMounted(() =>
   margin: 0 0.25rem;
   border: 1px solid #ccc;
   background-color: #fff;
+  color: black;
   cursor: pointer;
 }
 
@@ -145,6 +151,7 @@ onMounted(() =>
 .pagination button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
+  color: black;
 }
 
 @media (max-width: 768px) {

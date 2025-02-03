@@ -3,9 +3,9 @@ import { db } from './firebase.js';
 
 async function importAPI() {
   try {
-    for (let index = 10; index < 20; index++) {
-      const url = `https://api.themoviedb.org/3/tv/${index}`;
-      // const url = `https://api.themoviedb.org/3/movie/${index}`;
+    for (let index = 10; index < 1000; index++) {
+      //const url = `https://api.themoviedb.org/3/tv/${index}`;
+      const url = `https://api.themoviedb.org/3/movie/${index}`;
 
       // Tenta buscar os dados da API
       const data = await importData(url);
@@ -13,8 +13,8 @@ async function importAPI() {
       // Verifica se os dados foram retornados corretamente
       if (data) {
         const batch = writeBatch(db);
-        const docRef = doc(collection(db, 'series'));
-        // const docRef = doc(collection(db, 'movies'));
+        //const docRef = doc(collection(db, 'series'));
+        const docRef = doc(collection(db, 'movies'));
         batch.set(docRef, data);
 
         // Tenta confirmar a operação em lote
