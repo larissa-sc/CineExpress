@@ -63,8 +63,10 @@ class DAOService {
                 return {
                   id: doc.id,
                   title: data.original_title,
+                  name: data.original_name,
                   summary: data.overview,
-                  coverUrl: data.poster_path
+                  coverUrl: data.poster_path,
+                  vote: data.vote_average
                 };
               });
 

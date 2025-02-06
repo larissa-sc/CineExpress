@@ -22,13 +22,21 @@ const props = defineProps({
 const fullImageUrl = computed(() => {  
   let url = props.imageSrc && props.imageSrc.trim() !== '' 
     ? 'https://image.tmdb.org/t/p/w500' + props.imageSrc // Se imageSrc estiver definida e não for uma string vazia, usa essa URL
-    : require('../../../assets/images/backgroundLogin.jpg'); // Caso contrário, usa uma imagem padrão
+    : require('../../../assets/images/componenteSemPoster.png'); // Caso contrário, usa uma imagem padrão
   return url;
+});
+
+const truncatedTitle = computed(() => {
+  const maxLength = 30; // Define o limite de caracteres
+  return props.title.length > maxLength ? props.title.substring(0, maxLength) + '...' : props.title;
 });
 
 // Função para renderizar estrelas com base na classificação
 const renderStars = (rating) => {
-  return '★'.repeat(Math.floor(rating)) + '☆'.repeat(5 - Math.floor(rating)); // Repete o símbolo de estrela cheia e vazia
+  const maxStars = 5;
+  const filledStars = Math.round((rating / 2)); // Ajuste o divisor conforme necessário
+  const emptyStars = maxStars - filledStars;
+  return '★'.repeat(filledStars) + '☆'.repeat(emptyStars); // Repete o símbolo de estrela cheia e vazia
 };
 </script>
 
@@ -37,7 +45,7 @@ const renderStars = (rating) => {
     <!-- Exibe a imagem de capa ou a imagem padrão gerada pela computed property -->
     <img :src="fullImageUrl" :alt="Capa">
     <!-- Exibe o título -->
-    <h3>{{ title }}</h3>
+    <h3>{{ truncatedTitle }}</h3>
   <div class="rating">
     <!-- Exibe a classificação usando estrelas -->
     {{ renderStars(rating) }}
@@ -73,7 +81,7 @@ const renderStars = (rating) => {
 
 .rating {
   color: #f1c40f; /* Cor das estrelas (dourado) */
-  margin-top: 0.5rem;  /*Margem superior*/
-  font-size: 1.2rem;  /*Tamanho da fonte*/
+  margin-top: auto;  /*Margem superior*/
+  font-size: 1.8rem;  /*Tamanho da fonte*/
 }
 </style>

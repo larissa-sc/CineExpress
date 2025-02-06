@@ -1,6 +1,52 @@
 <script setup>
 // importar o menu suspenso para o cabeçalho
 import SideMenu from './SideMenu.vue';
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import DAOService from '@/services/DAOService';
+
+// Cria instâncias dos serviços DAOService para cada coleção
+const moviesService = new DAOService('movies');
+const seriesService = new DAOService('series');
+
+// Variáveis reativas para armazenar dados
+const searchQuery = ref('');
+const movies = ref([]);
+const series = ref([]);
+const searchResults = ref([]);
+
+// Função assíncrona para buscar todas as coleções
+const getCollections = async () => {
+  try {
+    movies.value = await moviesService.getAll();
+    series.value = await seriesService.getAll();
+  } catch (error) {
+    console.error('Erro ao buscar dados:', error);
+  }
+};
+
+// Chama a função getCollections para garantir que os dados estejam disponíveis
+getCollections();
+
+// Computed property para filtrar os resultados de todas as coleções com base na consulta de busca
+const filteredResults = computed(() => {
+  const query = searchQuery.value.toLowerCase();
+  const filteredMovies = movies.value.filter(movie => movie.title.toLowerCase().includes(query));
+  const filteredSeries = series.value.filter(serie => serie.name.toLowerCase().includes(query));
+  return [...filteredMovies, ...filteredSeries];
+});
+
+// Função para atualizar os resultados da busca
+const performSearch = () => {
+  searchResults.value = filteredResults.value;
+};
+
+// Função para navegar para o resultado selecionado
+const router = useRouter();
+const navigateToResult = (result) => {
+  // Redireciona para a página de detalhes do resultado (assumindo que todas as coleções têm uma página de detalhes)
+  router.push({ name: 'Detalhe', params: { id: result.id } });
+};
 </script>
 
 <template>
@@ -10,8 +56,14 @@ import SideMenu from './SideMenu.vue';
       <img class="logo" src="../../assets/images/logo.png" alt="Logo" />
     </div>
     <div class="search-container">
-      <input type="text" placeholder="Buscar..." class="search-input" />
-      <button class="search-button">🔍</button>
+      <input v-model="searchQuery" placeholder="Buscar... 🔍" @input="performSearch" class="search-input" />
+      <div class="search-results" v-if="searchQuery">
+        <div v-for="result in searchResults" :key="result.id" @click="navigateToResult(result)" class="search-result-item">
+        <div class="result-info">
+          <h4>{{ result.title }}</h4>
+        </div>
+      </div>
+      </div>
     </div>
     <div class="auth-container">
       <!-- Link para a página de login -->
@@ -55,9 +107,39 @@ import SideMenu from './SideMenu.vue';
   width: 250px;    /* Ajuste a largura do campo de busca */
 }
 
-.search-button, .login-button, .register-button {
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: black;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  margin-top: 0.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.search-results div {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.search-results div:hover {
+  background: #383232;
+}
+
+.login-button, .register-button {
   background: #ff6b00;
   padding: 0.5rem 1rem;    /* espaço interno */
+}
+
+.result-info h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .auth-container {
@@ -74,5 +156,37 @@ import SideMenu from './SideMenu.vue';
 
 .login-button:hover, .register-button:hover {
   background-color: #e96507;      /*altera a cor ao passar o mouse*/
+}
+
+/* Estilos responsivos para mobile */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Alinha os itens em coluna para dispositivos menores */
+    align-items: center; /* Centraliza os itens */
+    padding: 1rem; /* Ajusta o padding para dispositivos menores */
+  }
+
+  .logo {
+    height: 70px; /* Ajusta a largura da logo para dispositivos menores */
+  }
+
+  .search-container {
+    width: 100%; /* Ajusta a largura do contêiner de busca para 100% */
+    margin-bottom: 1rem; /* Espaçamento inferior */
+  }
+
+  .search-input {
+    width: 80%; /* Ajusta a largura do campo de busca para 100% */
+  }
+
+  .auth-container {
+    flex-direction: initial; /* Alinha os botões de login e cadastro em coluna */
+    margin-top: 1rem; /* Espaçamento superior */
+  }
+
+  .auth-link {
+    margin-left: 1rem; /* Remove a margem esquerda dos links */
+    margin-top: 0.5rem; /* Espaçamento superior */
+  }
 }
 </style>
