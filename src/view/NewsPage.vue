@@ -1,4 +1,5 @@
 <script setup>
+import FooterView from '@/components/fixed/FooterView.vue';
 import HeaderView from '../components/fixed/HeaderView.vue'
 </script>
 
@@ -8,4 +9,5 @@ import HeaderView from '../components/fixed/HeaderView.vue'
         <div>
         </div>
     </main>
+  <FooterView/>
 </template>

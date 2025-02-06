@@ -7,6 +7,7 @@ import { ref } from 'vue';
 import { auth } from '../services/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import router from '@/routes';
+import FooterView from '@/components/fixed/FooterView.vue';
 
 // Cria uma referência reativa para armazenar os dados de login
 const loginData = ref({
@@ -79,6 +80,7 @@ const loginUser = async () => {
       </form>
     </div>
   </div>
+  <FooterView/>
 </template>
 
 <style scoped>

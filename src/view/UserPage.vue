@@ -1,4 +1,5 @@
 <script setup>
+import FooterView from '@/components/fixed/FooterView.vue';
 import HeaderView from '../components/fixed/HeaderView.vue';
 
 //const movies = [
@@ -16,6 +17,7 @@ import HeaderView from '../components/fixed/HeaderView.vue';
         </select>
       </div>
   </main>
+  <FooterView/>
 </template>
 
 <style>

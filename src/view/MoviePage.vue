@@ -5,6 +5,7 @@ import router from '@/routes';
 import HeaderView from '../components/fixed/HeaderView.vue';
 import ComponentCard from '../components/navigation/component/ComponentCard.vue';
 import DAOService from '@/services/DAOService';
+import FooterView from '@/components/fixed/FooterView.vue';
 
 // Cria uma instância do serviço DAOService para 'movies'
 const moviesService = new DAOService('movies');
@@ -132,6 +133,7 @@ onMounted(() =>
       <button @click="nextPage" :disabled="currentPage === totalPages">Próximo</button>
     </div>
   </main>
+  <FooterView/>
 </template>
 
 <style>
