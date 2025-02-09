@@ -9,13 +9,7 @@ import HeaderView from '../components/fixed/HeaderView.vue';
 <template>
   <HeaderView />
     <main>
-      <div class="filters">
-        <select>
-          <option value="">Filtrar</option>
-          <option value="a-z">A/Z</option>
-          <option value="z-a">Z/A</option>
-        </select>
-      </div>
+      
   </main>
   <FooterView/>
 </template>

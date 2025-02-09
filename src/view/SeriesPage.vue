@@ -20,10 +20,10 @@ const filterOption = ref(''); // Armazena a opção de filtro selecionada
 const filteredSeries = computed(() => {
   // Ordena series de A a Z
   if (filterOption.value === 'a-z') {
-    return series.value.slice().sort((a, b) => a.title.localeCompare(b.title));
+    return series.value.slice().sort((a, b) => a.name.localeCompare(b.name));
   // Ordena series de Z a A
   } else if (filterOption.value === 'z-a') {
-    return series.value.slice().sort((a, b) => b.title.localeCompare(a.title));
+    return series.value.slice().sort((a, b) => b.name.localeCompare(a.name));
   } else {
     // Sem ordenação
     return series.value;

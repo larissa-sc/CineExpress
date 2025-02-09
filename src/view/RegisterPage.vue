@@ -50,7 +50,7 @@ const registerUser = async () => {
 
     alert('Conta criada com sucesso!');
 
-    router.push('/home');
+    router.push('/user');
 
 
     newUser.value.email = '';

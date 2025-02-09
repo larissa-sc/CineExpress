@@ -8,55 +8,58 @@ import DAOService from '@/services/DAOService';
 const seriesService = new DAOService('series');
 
 // Define variáveis reativas para armazenar dados
-const series = ref([]); // Armazena a lista de series
+const series = ref([]); // Armazena a lista de séries
 const currentIndex = ref(0); // Armazena o índice atual
-const pageSize = ref(6); // Armazena o tamanho da página (quantas series por passada)
+const pageSize = ref(6); // Armazena o tamanho da página (quantas séries por passada)
 const filterOption = ref(''); // Armazena a opção de filtro selecionada
 
-// Computed property para filtrar e ordenar as series conforme a opção de filtro selecionada
+// Computed property para filtrar e ordenar as séries conforme a opção de filtro selecionada
 const filteredSeries = computed(() => {
-  // Ordena series de A a Z
+  // Filtra séries com 'vote' maior que 7
+  const filteredByVote = series.value.filter(serie => serie.vote > 7);
+  
+  // Ordena séries de A a Z
   if (filterOption.value === 'a-z') {
-    return series.value.slice().sort((a, b) => a.title.localeCompare(b.title));
-  // Ordena series de Z a A
+    return filteredByVote.slice().sort((a, b) => a.title.localeCompare(b.title));
+  // Ordena séries de Z a A
   } else if (filterOption.value === 'z-a') {
-    return series.value.slice().sort((a, b) => b.title.localeCompare(a.title));
+    return filteredByVote.slice().sort((a, b) => b.title.localeCompare(a.title));
   } else {
     // Sem ordenação
-    return series.value;
+    return filteredByVote;
   }
 });
 
-// Computed property para calcular o número total de series
+// Computed property para calcular o número total de séries
 const totalSeries = computed(() => filteredSeries.value.length);
 
-// Computed property para paginar os filmes conforme o índice atual e o tamanho da página
+// Computed property para paginar as séries conforme o índice atual e o tamanho da página
 const paginatedSeries = computed(() => {
   const start = currentIndex.value;
-  const end = start + pageSize.value;
+  const end = Math.min(start + pageSize.value, filteredSeries.value.length);
   return filteredSeries.value.slice(start, end);
 });
 
-// Função para ir ao próximo conjunto de filmes
+// Função para ir ao próximo conjunto de séries
 const nextSet = () => {
-  if (currentIndex.value + pageSize.value < totalSeries.value) {
+  if (currentIndex.value + pageSize.value < Math.min(18, totalSeries.value)) {
     currentIndex.value += pageSize.value;
   }
 };
 
-// Função para ir ao conjunto de filmes anterior
+// Função para ir ao conjunto de séries anterior
 const previousSet = () => {
   if (currentIndex.value > 0) {
     currentIndex.value -= pageSize.value;
   }
 };
 
-// Função para navegar para a página de detalhes de um filme específico
+// Função para navegar para a página de detalhes de uma série específica
 const detailsSeries = (id) => {
   router.push({ name: 'SerieDetails', params: { id } });
 };
 
-// Função assíncrona para buscar a lista de filmes do serviço
+// Função assíncrona para buscar a lista de séries do serviço
 const getSeries = async () => {
   try {
     series.value = await seriesService.getAll();
@@ -73,7 +76,7 @@ onMounted(() =>
 
 <template>
   <section class="serie-section">
-    <h1 class="section-title">SÉRIES EM DESTAQUE</h1>
+    <h1 class="section-title">SÉRIES COM MELHOR AVALIAÇÃO</h1>
     <div class="serie-grid">
       <ComponentCard 
         v-for="(serie, index) in paginatedSeries" 
@@ -86,7 +89,7 @@ onMounted(() =>
     </div>
     <div class="navigation-buttons">
       <button @click="previousSet" :disabled="currentIndex === 0"> 🡸 </button>
-      <button @click="nextSet" :disabled="currentIndex + pageSize >= totalSeries"> 🡺 </button>
+      <button @click="nextSet" :disabled="currentIndex + pageSize.value >= Math.min(18, totalSeries.value)"> 🡺 </button>
     </div>
   </section>
 </template>

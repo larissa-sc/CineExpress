@@ -18,7 +18,8 @@ const tabs = [
   { id: 'movies', label: 'Filmes', icon: '🎬', route: '/movie' },
   { id: 'series', label: 'Séries', icon: '📺', route: '/series' },
   { id: 'news', label: 'Notícias', icon: '📰', route: '/news' },
-  { id: 'login', label: 'Login', icon: '😊', route: '/login' }
+  { id: 'login', label: 'Login', icon: '😊', route: '/login' },
+  { id: 'user', label: 'Usuário', icon: '🏆', route: '/user' }
 ]
 
 const activeTab = ref('home')    /*referência reativa que mantém a aba ativa atual */

@@ -62,11 +62,16 @@ class DAOService {
                 const data = doc.data();
                 return {
                   id: doc.id,
-                  title: data.original_title,
-                  name: data.original_name,
+                  title: data.original_title,   //filmes
+                  name: data.original_name,  //séries
                   summary: data.overview,
                   coverUrl: data.poster_path,
-                  vote: data.vote_average
+                  vote: data.vote_average,
+                  runtime: data.runtime,  //filmes
+                  genres: data.genres,
+                  datePublic: data.release_date,  //filme
+                  dateExib: data.first_air_date,  //série
+                  seasons: data.number_of_seasons  //série
                 };
               });
 

@@ -1,9 +1,10 @@
+// HeaderView.vue
 <script setup>
-// importar o menu suspenso para o cabeçalho
 import SideMenu from './SideMenu.vue';
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import DAOService from '@/services/DAOService';
+import { checkUserAuthentication } from '@/services/authService';  // Importa o serviço de autenticação
 
 // Cria instâncias dos serviços DAOService para cada coleção
 const moviesService = new DAOService('movies');
@@ -14,6 +15,7 @@ const searchQuery = ref('');
 const movies = ref([]);
 const series = ref([]);
 const searchResults = ref([]);
+const isUserLoggedIn = ref(false);  // Adiciona a variável de estado de autenticação
 
 // Função assíncrona para buscar todas as coleções
 const getCollections = async () => {
@@ -45,8 +47,20 @@ const performSearch = () => {
 const router = useRouter();
 const navigateToResult = (result) => {
   // Redireciona para a página de detalhes do resultado (assumindo que todas as coleções têm uma página de detalhes)
-  router.push({ name: 'ComponentDetails', params: { id: result.id } });
+  router.push({ name: 'MovieDetails' || 'SerieDetails', params: { id: result.id } });
 };
+
+// Função para verificar a autenticação do usuário
+const initializeAuth = () => {
+  checkUserAuthentication((user) => {
+    isUserLoggedIn.value = !!user;
+  });
+};
+
+// Chama a função de verificação de autenticação ao montar o componente
+onMounted(() => {
+  initializeAuth();
+});
 </script>
 
 <template>
@@ -66,8 +80,10 @@ const navigateToResult = (result) => {
       </div>
     </div>
     <div class="auth-container">
-      <!-- Link para a página de login -->
-      <router-link to="/login" class="auth-link"><button class="login-button">Login</button></router-link>
+      <!-- Exibe mensagem de boas-vindas se o usuário estiver logado -->
+      <div v-if="isUserLoggedIn">Bem-vindo, usuário!</div>
+      <!-- Link para a página de login se o usuário não estiver logado -->
+      <router-link v-else to="/login" class="auth-link"><button class="login-button">Login</button></router-link>
       <!-- Link para a página de cadastro -->
       <router-link to="/register" class="auth-link"><button class="register-button">Cadastre-se</button></router-link>
     </div>

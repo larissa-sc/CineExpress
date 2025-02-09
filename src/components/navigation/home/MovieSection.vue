@@ -15,15 +15,18 @@ const filterOption = ref(''); // Armazena a opção de filtro selecionada
 
 // Computed property para filtrar e ordenar os filmes conforme a opção de filtro selecionada
 const filteredMovies = computed(() => {
+  // Filtra filmes com 'vote' maior que 7
+  const filteredByVote = movies.value.filter(movie => movie.vote > 7);
+  
   // Ordena filmes de A a Z
   if (filterOption.value === 'a-z') {
-    return movies.value.slice().sort((a, b) => a.title.localeCompare(b.title));
+    return filteredByVote.slice().sort((a, b) => a.title.localeCompare(b.title));
   // Ordena filmes de Z a A
   } else if (filterOption.value === 'z-a') {
-    return movies.value.slice().sort((a, b) => b.title.localeCompare(a.title));
+    return filteredByVote.slice().sort((a, b) => b.title.localeCompare(a.title));
   } else {
     // Sem ordenação
-    return movies.value;
+    return filteredByVote;
   }
 });
 
@@ -39,7 +42,7 @@ const paginatedMovies = computed(() => {
 
 // Função para ir ao próximo conjunto de filmes
 const nextSet = () => {
-  if (currentIndex.value + pageSize.value < totalMovies.value) {
+  if (currentIndex.value + pageSize.value < Math.min(18, totalMovies.value)) {
     currentIndex.value += pageSize.value;
   }
 };
@@ -73,7 +76,7 @@ onMounted(() =>
 
 <template>
   <section class="movie-section">
-    <h1 class="section-title">FILMES EM DESTAQUE</h1>
+    <h1 class="section-title">FILMES COM MELHOR AVALIAÇÃO</h1>
     <div class="movie-grid">
       <ComponentCard 
         v-for="(movie, index) in paginatedMovies" 
@@ -86,7 +89,7 @@ onMounted(() =>
     </div>
     <div class="navigation-buttons">
       <button @click="previousSet" :disabled="currentIndex === 0"> 🡸 </button>
-      <button @click="nextSet" :disabled="currentIndex + pageSize >= totalMovies"> 🡺 </button>
+      <button @click="nextSet" :disabled="currentIndex + pageSize >= Math.min(18, totalMovies.value)"> 🡺 </button>
     </div>
   </section>
 </template>
