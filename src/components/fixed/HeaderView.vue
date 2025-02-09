@@ -45,7 +45,7 @@ const performSearch = () => {
 const router = useRouter();
 const navigateToResult = (result) => {
   // Redireciona para a página de detalhes do resultado (assumindo que todas as coleções têm uma página de detalhes)
-  router.push({ name: 'Detalhe', params: { id: result.id } });
+  router.push({ name: 'ComponentDetails', params: { id: result.id } });
 };
 </script>
 

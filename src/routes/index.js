@@ -5,7 +5,9 @@ import MoviePage from '@/view/MoviePage.vue';
 import SeriesPage from '@/view/SeriesPage.vue';
 import RegisterPage from '@/view/RegisterPage.vue';
 import UserPage from '@/view/UserPage.vue';
+import MovieDetails from '@/components/navigation/component/MovieDetails.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import SerieDetails from '@/components/navigation/component/SerieDetails.vue';
 
 const routes = [
   { path: '/', component: HomeView},
@@ -13,7 +15,9 @@ const routes = [
   { path: '/register', component: RegisterPage},
   { path: '/movie', component: MoviePage},
   { path: '/series', component: SeriesPage},
-  { path: '/user', component: UserPage, meta: {requiresAuth: true}}
+  { path: '/item/:id', name: 'MovieDetails', component: MovieDetails },
+  { path: '/user', component: UserPage, meta: {requiresAuth: true}},
+  { path: '/item/:id', name: 'SerieDetails', component: SerieDetails}
 ];
 
 const router = createRouter({

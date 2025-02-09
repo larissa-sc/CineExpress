@@ -76,7 +76,7 @@ const nextPage = () => {
 
 // Função para navegar para a página de detalhes de uma série específico
 const detailsSerie = (id) => {
-  router.push({ name: "DetalheSeries", params: { id } });
+  router.push({ name: 'SerieDetails', params: { id } });
 };
 
 // Função assíncrona para buscar a lista de series do serviço

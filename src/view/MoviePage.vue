@@ -76,7 +76,7 @@ const nextPage = () => {
 
 // Função para navegar para a página de detalhes de um filme específico
 const detailsMovies = (id) => {
-  router.push({ name: "DetalheFilmes", params: { id } });
+  router.push({ name: 'MovieDetails', params: { id } });
 };
 
 // Função assíncrona para buscar a lista de filmes do serviço

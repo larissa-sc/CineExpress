@@ -87,8 +87,14 @@ class DAOService {
 
             // Verifica se o documento existe
             if (docSnap.exists()) {
-                // Retorna o documento com os dados e o ID
-                return { id: docSnap.id, ...docSnap.data() };
+                const data = docSnap.data();
+                return {
+                    id: docSnap.id,
+                    title: data.original_title,
+                    name: data.original_name,
+                    summary: data.overview,
+                    coverUrl: data.poster_path,
+                    vote: data.vote_average}
             } else {                                                                   
                 throw new Error('No such document!'); // Lança um erro se o documento não existir
             }
