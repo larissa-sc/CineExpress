@@ -73,7 +73,7 @@ onMounted(() =>
 
 <template>
   <section class="serie-section">
-    <h2 class="section-title">FILMES EM DESTAQUE</h2>
+    <h1 class="section-title">SÉRIES EM DESTAQUE</h1>
     <div class="serie-grid">
       <ComponentCard 
         v-for="(serie, index) in paginatedSeries" 
@@ -85,8 +85,8 @@ onMounted(() =>
       />
     </div>
     <div class="navigation-buttons">
-      <button @click="previousSet" :disabled="currentIndex === 0">⬅️</button>
-      <button @click="nextSet" :disabled="currentIndex + pageSize >= totalSeries">➡️</button>
+      <button @click="previousSet" :disabled="currentIndex === 0"> 🡸 </button>
+      <button @click="nextSet" :disabled="currentIndex + pageSize >= totalSeries"> 🡺 </button>
     </div>
   </section>
 </template>
@@ -123,7 +123,7 @@ onMounted(() =>
   height: auto;
 }
 
-.serie-card h3 {
+.serie-card h1 {
   padding: 0.5rem;
   text-align: center;
 }

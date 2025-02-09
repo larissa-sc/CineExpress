@@ -53,7 +53,7 @@ const previousSet = () => {
 
 // Função para navegar para a página de detalhes de um filme específico
 const detailsMovies = (id) => {
-  router.push({ name: 'ComponentDetails', params: { id } });
+  router.push({ name: 'MovieDetails', params: { id } });
 };
 
 // Função assíncrona para buscar a lista de filmes do serviço
@@ -73,7 +73,7 @@ onMounted(() =>
 
 <template>
   <section class="movie-section">
-    <h2 class="section-title">FILMES EM DESTAQUE</h2>
+    <h1 class="section-title">FILMES EM DESTAQUE</h1>
     <div class="movie-grid">
       <ComponentCard 
         v-for="(movie, index) in paginatedMovies" 
@@ -85,8 +85,8 @@ onMounted(() =>
       />
     </div>
     <div class="navigation-buttons">
-      <button @click="previousSet" :disabled="currentIndex === 0">⬅️</button>
-      <button @click="nextSet" :disabled="currentIndex + pageSize >= totalMovies">➡️</button>
+      <button @click="previousSet" :disabled="currentIndex === 0"> 🡸 </button>
+      <button @click="nextSet" :disabled="currentIndex + pageSize >= totalMovies"> 🡺 </button>
     </div>
   </section>
 </template>
@@ -123,7 +123,7 @@ onMounted(() =>
   height: auto;
 }
 
-.movie-card h3 {
+.movie-card h1 {
   padding: 0.5rem;
   text-align: center;
 }
