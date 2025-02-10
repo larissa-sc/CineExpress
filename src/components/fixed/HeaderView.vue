@@ -81,7 +81,7 @@ onMounted(() => {
     </div>
     <div class="auth-container">
       <!-- Exibe mensagem de boas-vindas se o usuário estiver logado -->
-      <div v-if="isUserLoggedIn">Bem-vindo, usuário!</div>
+      <div v-if="isUserLoggedIn">Bem-vindo!</div>
       <!-- Link para a página de login se o usuário não estiver logado -->
       <router-link v-else to="/login" class="auth-link"><button class="login-button">Login</button></router-link>
       <!-- Link para a página de cadastro -->

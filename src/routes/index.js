@@ -8,7 +8,8 @@ import UserPage from '@/view/UserPage.vue';
 import MovieDetails from '@/components/navigation/component/MovieDetails.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import SerieDetails from '@/components/navigation/component/SerieDetails.vue';
-import Comment from '@/components/navigation/component/ComponentComment.vue'
+import Comment from '@/components/navigation/component/ComponentComment.vue';
+import CreateNew from '@/view/CreateNew.vue';
 
 const routes = [
   { path: '/', component: HomeView},
@@ -19,7 +20,8 @@ const routes = [
   { path: '/item/:id', name: 'MovieDetails', component: MovieDetails },
   { path: '/user', component: UserPage, meta: {requiresAuth: true}},
   { path: '/item/:id', name: 'SerieDetails', component: SerieDetails},
-  { path: '/comentario', component: Comment}
+  { path: '/comentario', component: Comment},
+  { path:'/create-news', component: CreateNew }
 ];
 
 const router = createRouter({
