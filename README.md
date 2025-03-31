@@ -1,7 +1,8 @@
 <<<<<<< HEAD
-# cineexpress
+# Projeto CineExpress
 
 Site para acesso: cineexpree-ifpe.web.app
+Projeto de um site desenvolvido em HTML, CSS, JavaScript e Vue.JS sobre filmes e séries.
 
 ## Project setup
 ```
